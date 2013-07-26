@@ -135,7 +135,7 @@ ParseGbrMobile (const GoogleBidRequest& gbr, BidRequest& br)
         {
         case BidRequest_Mobile_MobileDeviceType_HIGHEND_PHONE:
         case BidRequest_Mobile_MobileDeviceType_TABLET:
-            br.device->devicetype.val = OpenRTB::DeviceType::MOBILE_OR_TABLET ;
+            br.device->devicetype = OpenRTB::DeviceType::MOBILE_OR_TABLET ;
             break;
         default:
             break;
@@ -162,7 +162,7 @@ ParseGbrMobile (const GoogleBidRequest& gbr, BidRequest& br)
     //      http://www.iab.net/media/file/OpenRTB-API-Specification-Version-2-1-FINAL.pdf
     if (br.app)
         for (auto i: boost::irange(0, mobile.app_category_ids_size()))
-            br.app->cat.emplace_back(to_string(mobile.app_category_ids(i)));
+            br.app->cat->insert(to_string(mobile.app_category_ids(i)));
 
     if (mobile.has_is_mobile_web_optimized())
         ext.atStr("is_mobile_web_optimized") = mobile.is_mobile_web_optimized();
@@ -312,10 +312,10 @@ ParseGbrAdSlot (const GoogleBidRequest& gbr, BidRequest& br)
             switch (slot.slot_visibility())
             {
             case BidRequest_AdSlot_SlotVisibility_ABOVE_THE_FOLD:
-                spot.banner->pos.val = OpenRTB::AdPosition::ABOVE ;
+                spot.banner->pos = OpenRTB::AdPosition::ABOVE ;
                 break;
             case BidRequest_AdSlot_SlotVisibility_BELOW_THE_FOLD:
-                spot.banner->pos.val = OpenRTB::AdPosition::BELOW ;
+                spot.banner->pos = OpenRTB::AdPosition::BELOW ;
                 break;
             default:
                 break;

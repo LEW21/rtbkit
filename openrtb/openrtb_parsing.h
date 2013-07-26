@@ -7,344 +7,101 @@
 
 #pragma once
 
-#include "soa/types/value_description.h"
-#include "soa/types/basic_value_descriptions.h"
-#include "soa/types/json_parsing.h"
 #include "openrtb.h"
-#include <boost/lexical_cast.hpp>
-
-namespace Datacratic {
-
-template<>
-struct DefaultDescription<OpenRTB::ContentCategory>
-    : public ValueDescriptionI<OpenRTB::ContentCategory> {
-
-    DefaultDescription()
-    {
-    }
-
-    virtual void parseJsonTyped(OpenRTB::ContentCategory * val,
-                                JsonParsingContext & context) const
-    {
-        val->val = context.expectStringAscii();
-    }
-
-    virtual void printJsonTyped(const OpenRTB::ContentCategory * val,
-                                JsonPrintingContext & context) const
-    {
-        context.writeString(val->val);
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::MimeType>
-    : public ValueDescriptionI<OpenRTB::MimeType, ValueKind::STRING> {
-
-    virtual void parseJsonTyped(OpenRTB::MimeType * val,
-                                JsonParsingContext & context) const
-    {
-        val->type = context.expectStringAscii();
-    }
-
-    virtual void printJsonTyped(const OpenRTB::MimeType * val,
-                                JsonPrintingContext & context) const
-    {
-        context.writeString(val->type);
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::VideoQuality>
-    : public TaggedEnumDescription<OpenRTB::VideoQuality> {
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::AuctionType>
-    : public TaggedEnumDescription<OpenRTB::AuctionType> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::BannerAdType>
-    : public TaggedEnumDescription<OpenRTB::BannerAdType> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::CreativeAttribute>
-    : public TaggedEnumDescription<OpenRTB::CreativeAttribute> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::ApiFramework>
-    : public TaggedEnumDescription<OpenRTB::ApiFramework> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::VideoLinearity>
-    : public TaggedEnumDescription<OpenRTB::VideoLinearity> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::VideoBidResponseProtocol>
-    : public TaggedEnumDescription<OpenRTB::VideoBidResponseProtocol> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::VideoPlaybackMethod>
-    : public TaggedEnumDescription<OpenRTB::VideoPlaybackMethod> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::VideoStartDelay>
-    : public TaggedEnumDescription<OpenRTB::VideoStartDelay> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::ConnectionType>
-    : public TaggedEnumDescription<OpenRTB::ConnectionType> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::ExpandableDirection>
-    : public TaggedEnumDescription<OpenRTB::ExpandableDirection> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::ContentDeliveryMethod>
-    : public TaggedEnumDescription<OpenRTB::ContentDeliveryMethod> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::ContentContext>
-    : public TaggedEnumDescription<OpenRTB::ContentContext> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::LocationType>
-    : public TaggedEnumDescription<OpenRTB::LocationType> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-
-template<>
-struct DefaultDescription<OpenRTB::DeviceType>
-    : public TaggedEnumDescription<OpenRTB::DeviceType> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::VastCompanionType>
-    : public TaggedEnumDescription<OpenRTB::VastCompanionType> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::MediaRating>
-    : public TaggedEnumDescription<OpenRTB::MediaRating> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::FramePosition>
-    : public TaggedEnumDescription<OpenRTB::FramePosition> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::SourceRelationship>
-    : public TaggedEnumDescription<OpenRTB::SourceRelationship> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Embeddable>
-    : public TaggedEnumDescription<OpenRTB::Embeddable> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::AdPosition>
-    : public TaggedEnumDescription<OpenRTB::AdPosition> {
-
-    DefaultDescription()
-    {
-    }
-};
-
-template<>
-struct DefaultDescription<OpenRTB::BidRequest>
-    : public StructureDescription<OpenRTB::BidRequest> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Impression>
-    : public StructureDescription<OpenRTB::Impression> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Banner>
-    : public StructureDescription<OpenRTB::Banner> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Video>
-    : public StructureDescription<OpenRTB::Video> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Content>
-    : public StructureDescription<OpenRTB::Content> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Context>
-    : public StructureDescription<OpenRTB::Context> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Site>
-    : public StructureDescription<OpenRTB::Site> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::App>
-    : public StructureDescription<OpenRTB::App> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Device>
-    : public StructureDescription<OpenRTB::Device> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::User>
-    : public StructureDescription<OpenRTB::User> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Publisher>
-    : public StructureDescription<OpenRTB::Publisher> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Geo>
-    : public StructureDescription<OpenRTB::Geo> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Data>
-    : public StructureDescription<OpenRTB::Data> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Segment>
-    : public StructureDescription<OpenRTB::Segment> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::Bid>
-    : public StructureDescription<OpenRTB::Bid> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::SeatBid>
-    : public StructureDescription<OpenRTB::SeatBid> {
-    DefaultDescription();
-};
-
-template<>
-struct DefaultDescription<OpenRTB::BidResponse>
-    : public StructureDescription<OpenRTB::BidResponse> {
-    DefaultDescription();
-};
-
-
-
+#include "soa/types/value_description.h"
+#include "common/descriptions/autocast.h"
+#include <cxxcompat/override>
+
+namespace RTBKIT
+{
+	/// Parser for banner w or h.  This can either be:
+	/// single format: "w": 123
+	/// multiple formats: "w": [ 123, 456 ]
+	struct FormatListDescription: public Datacratic::ValueDescriptionI<std::vector<int>>, public Datacratic::ListDescriptionBase<int>
+	{
+		virtual void parseJsonTyped(std::vector<int>* val, Datacratic::JsonParsingContext& context) const override
+		{
+			if (context.isArray())
+				context.forEachElement([&]()
+				{
+					val->push_back(context.expectInt());
+				});
+			else
+				val->push_back(context.expectInt());
+		}
+
+		virtual void printJsonTyped(const std::vector<int>* val, Datacratic::JsonPrintingContext& context) const override
+		{
+			if (val->size() == 1)
+				this->inner->printJsonTyped(&(*val)[0], context);
+			else
+				printJsonTypedList(val, context);
+		}
+
+		virtual bool isDefaultTyped(const std::vector<int>* val) const override
+		{
+			return val->empty();
+		}
+	};
+}
+
+namespace Datacratic
+{
+	inline OpenRTB::Currency toCurrency(const std::string& str)
+	{
+		return OpenRTB::MakeCurrency(str.c_str());
+	}
+
+	inline std::string toString(OpenRTB::Currency cur)
+	{
+		union {
+			char s[5];
+			uint32_t c;
+		};
+
+		c = uint32_t(cur);
+		s[4] = '\0';
+
+		return std::string(s);
+	}
+
+	template<> struct DefaultDescription<OpenRTB::Currency> : public StringEnumDescription<OpenRTB::Currency, toCurrency, toString> {};
+	template<> struct DefaultDescription<OpenRTB::BannerAdType> : public IntegerEnumDescription<OpenRTB::BannerAdType> {};
+	template<> struct DefaultDescription<OpenRTB::CreativeAttribute> : public IntegerEnumDescription<OpenRTB::CreativeAttribute> {};
+	template<> struct DefaultDescription<OpenRTB::ApiFramework> : public IntegerEnumDescription<OpenRTB::ApiFramework> {};
+	template<> struct DefaultDescription<OpenRTB::AdPosition> : public IntegerEnumDescription<OpenRTB::AdPosition> {};
+	template<> struct DefaultDescription<OpenRTB::VideoLinearity> : public IntegerEnumDescription<OpenRTB::VideoLinearity> {};
+	template<> struct DefaultDescription<OpenRTB::VideoBidResponseProtocol> : public IntegerEnumDescription<OpenRTB::VideoBidResponseProtocol> {};
+	template<> struct DefaultDescription<OpenRTB::VideoPlaybackMethod> : public IntegerEnumDescription<OpenRTB::VideoPlaybackMethod> {};
+	template<> struct DefaultDescription<OpenRTB::VideoStartDelay> : public IntegerEnumDescription<OpenRTB::VideoStartDelay> {};
+	template<> struct DefaultDescription<OpenRTB::ConnectionType> : public IntegerEnumDescription<OpenRTB::ConnectionType> {};
+	template<> struct DefaultDescription<OpenRTB::ExpandableDirection> : public IntegerEnumDescription<OpenRTB::ExpandableDirection> {};
+	template<> struct DefaultDescription<OpenRTB::ContentDeliveryMethod> : public IntegerEnumDescription<OpenRTB::ContentDeliveryMethod> {};
+	template<> struct DefaultDescription<OpenRTB::ContentContext> : public IntegerEnumDescription<OpenRTB::ContentContext> {};
+	template<> struct DefaultDescription<OpenRTB::VideoQuality> : public IntegerEnumDescription<OpenRTB::VideoQuality> {};
+	template<> struct DefaultDescription<OpenRTB::LocationType> : public IntegerEnumDescription<OpenRTB::LocationType> {};
+	template<> struct DefaultDescription<OpenRTB::DeviceType> : public IntegerEnumDescription<OpenRTB::DeviceType> {};
+	template<> struct DefaultDescription<OpenRTB::VastCompanionType> : public IntegerEnumDescription<OpenRTB::VastCompanionType> {};
+	template<> struct DefaultDescription<OpenRTB::MediaRating> : public IntegerEnumDescription<OpenRTB::MediaRating> {};
+	template<> struct DefaultDescription<OpenRTB::AuctionType> : public IntegerEnumDescription<OpenRTB::AuctionType> {};
+	template<> struct DefaultDescription<OpenRTB::Content::SourceRelationship> : public IntegerEnumDescription<OpenRTB::Content::SourceRelationship> {};
+
+	template<> struct DefaultDescription<OpenRTB::BidRequest> : public AutoCastingStructureDescription<OpenRTB::BidRequest> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Impression> : public AutoCastingStructureDescription<OpenRTB::Impression> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Banner> : public AutoCastingStructureDescription<OpenRTB::Banner> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Video> : public AutoCastingStructureDescription<OpenRTB::Video> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Content> : public AutoCastingStructureDescription<OpenRTB::Content> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Context> : public AutoCastingStructureDescription<OpenRTB::Context> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Site> : public AutoCastingStructureDescription<OpenRTB::Site> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::App> : public AutoCastingStructureDescription<OpenRTB::App> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Device> : public AutoCastingStructureDescription<OpenRTB::Device> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::User> : public AutoCastingStructureDescription<OpenRTB::User> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Publisher> : public AutoCastingStructureDescription<OpenRTB::Publisher> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Geo> : public AutoCastingStructureDescription<OpenRTB::Geo> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Data> : public AutoCastingStructureDescription<OpenRTB::Data> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Segment> : public AutoCastingStructureDescription<OpenRTB::Segment> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::Bid> : public AutoCastingStructureDescription<OpenRTB::Bid> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::SeatBid> : public AutoCastingStructureDescription<OpenRTB::SeatBid> {DefaultDescription();};
+	template<> struct DefaultDescription<OpenRTB::BidResponse> : public AutoCastingStructureDescription<OpenRTB::BidResponse> {DefaultDescription();};
 
 } // namespace Datacratic

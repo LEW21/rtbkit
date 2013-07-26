@@ -192,7 +192,7 @@ setSeatBid(Auction const & auction,
     b.cid = Id(resp.agent);
     b.id = Id(auction.id, auction.request->imp[0].id);
     b.impid = auction.request->imp[spotNum].id;
-    b.price.val = USD_CPM(resp.price.maxPrice);
+    b.price = USD_CPM(resp.price.maxPrice);
 }
 
 } // namespace RTBKIT

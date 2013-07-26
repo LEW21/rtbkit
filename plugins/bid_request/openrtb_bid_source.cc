@@ -17,12 +17,12 @@ BidRequest OpenRTBBidSource::generateRandomBidRequest() {
 
     OpenRTB::BidRequest req;
     req.id = Id(rng.random());
-    req.tmax.val = 50;
+    req.tmax = 50;
     req.at = AuctionType::SECOND_PRICE;
     req.imp.emplace_back();
     auto & imp = req.imp[0];
     imp.id = Id(key);
-    imp.banner.reset(new OpenRTB::Banner);
+    imp.banner.emplace();
     imp.banner->w.push_back(300);
     imp.banner->h.push_back(250);
 
@@ -82,7 +82,7 @@ parseResponse(const std::string& rawResponse) -> std::pair<bool, std::vector<Bid
     for(auto i = 0; i != response.seatbid[0].bid.size(); ++i) {
         Bid bid;
         bid.adSpotId = response.seatbid[0].bid[i].impid;
-        bid.maxPrice = response.seatbid[0].bid[i].price.val;
+        bid.maxPrice = response.seatbid[0].bid[i].price;
         bids.push_back(bid);
     }
 
