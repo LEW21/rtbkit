@@ -32,7 +32,7 @@ namespace Datacratic
 	{
 		virtual void parseJsonTyped(T* val, JsonParsingContext& context) const override
 		{
-			*val = toEnum(context.expectString());
+			*val = toEnum(context.expectStringAscii());
 		}
 
 		virtual void printJsonTyped(const T* val, JsonPrintingContext& context) const override
